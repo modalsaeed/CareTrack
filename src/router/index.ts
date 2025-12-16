@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 import LoginView from "@/views/LoginView.vue";
 import DashboardView from "@/views/DashboardView.vue";
 import PatientsView from "@/views/PatientsView.vue";
@@ -22,8 +23,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _from, next) => {
+    const authStore = useAuthStore()
     const requiresAuth = to.meta.requiresAuth
-    const loggedIn = false // place holder before pinia auth state being stored and handled
+    const loggedIn = authStore.loggedIn
+    
     if (requiresAuth && !loggedIn) next({name : 'login'})
     else if (to.name === 'login' && loggedIn) next({ name: 'dashboard'})
     else next()
