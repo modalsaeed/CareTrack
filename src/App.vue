@@ -31,19 +31,35 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 import LoadingSpinner from '@/components/layout/LoadingSpinner.vue'
 import BaseButton from '@/components/common/BaseButton.vue'
 import { useApi } from '@/composables/useApi'
+import { useAuth } from '@/composables/useAuth'
 
 const route = useRoute()
 const isLoginPage = computed(() => route.path === '/login')
 
 // API loading/error states
 const { loading: appLoading, error: appError, fetchAppData } = useApi()
+const { isLoggedIn } = useAuth()
+
+// Fetch data when user logs in
+watch(isLoggedIn, (newValue) => {
+  if (newValue) {
+    fetchAppData()
+  }
+})
+
+// Also fetch on mount if already logged in (page refresh)
+onMounted(() => {
+  if (isLoggedIn.value) {
+    fetchAppData()
+  }
+})
 
 const retryInit = () => {
   fetchAppData()

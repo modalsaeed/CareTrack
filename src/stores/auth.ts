@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
         userEmail: null
     }),
     actions: {
-        login(credentials: LoginCredentials) {
+        async login(credentials: LoginCredentials) {
             const email = credentials.email.trim()
             const password = credentials.password.trim()
 
@@ -19,6 +19,9 @@ export const useAuthStore = defineStore('auth', {
             if (!isValidEmail(email)) {
                 throw new Error(VALIDATION_MESSAGES.INVALID_EMAIL)
             }
+
+            // Simulate authentication delay
+            await new Promise(resolve => setTimeout(resolve, 500))
 
             this.loggedIn = true
             this.userEmail = email
