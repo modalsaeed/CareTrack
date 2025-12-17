@@ -97,7 +97,7 @@ const handleSubmit = () => {
 <style scoped>
 .visit-note-form h3 {
   margin: 0 0 var(--spacing-lg) 0;
-  color: var(--text-primary);
+  color: var(--color-text-primary);
 }
 
 .form-row {
@@ -110,33 +110,33 @@ const handleSubmit = () => {
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
 }
 
 .form-field label {
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--color-text-primary);
 }
 
 .visit-type-select,
 .note-textarea {
   padding: var(--spacing-md);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
   font-family: inherit;
-  background: var(--surface-color);
-  color: var(--text-primary);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .visit-type-select:focus,
 .note-textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 159, 197, 0.1);
 }
 
 .note-textarea {

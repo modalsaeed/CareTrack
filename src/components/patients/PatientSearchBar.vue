@@ -41,29 +41,29 @@ defineEmits<{
 .search-icon {
   position: absolute;
   left: var(--spacing-md);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   pointer-events: none;
 }
 
 .search-input {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 3rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-md);
-  background: var(--surface-color);
-  color: var(--text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 159, 197, 0.1);
 }
 
 .search-input::placeholder {
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
 }
 
 .clear-button {
@@ -71,18 +71,18 @@ defineEmits<{
   right: var(--spacing-sm);
   background: none;
   border: none;
-  padding: var(--spacing-xs);
+  padding: var(--spacing-sm);
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--radius-md);
   transition: background-color 0.2s ease;
 }
 
 .clear-button:hover {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-bg-secondary);
 }
 
 .clear-button .material-icons {
