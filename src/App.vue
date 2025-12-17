@@ -4,6 +4,11 @@
     <router-view />
   </div>
 
+  <!-- 404 page (no layout) -->
+  <div v-else-if="isNotFoundPage" class="not-found-layout">
+    <router-view />
+  </div>
+
   <!-- App layout (header + sidebar + main content) -->
   <div v-else class="app-layout">
     <AppHeader />
@@ -42,6 +47,7 @@ import { useAuth } from '@/composables/useAuth'
 
 const route = useRoute()
 const isLoginPage = computed(() => route.path === '/login')
+const isNotFoundPage = computed(() => route.name === 'not-found')
 
 // API loading/error states
 const { loading: appLoading, error: appError, fetchAppData } = useApi()
@@ -77,6 +83,11 @@ const retryInit = () => {
 <style scoped>
 /* Login layout */
 .login-layout {
+  min-height: 100vh;
+}
+
+/* 404 layout */
+.not-found-layout {
   min-height: 100vh;
 }
 
