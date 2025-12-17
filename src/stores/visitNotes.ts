@@ -3,7 +3,7 @@ import type { VisitNote } from '@/types/visitNote'
 import { STORAGE_KEYS } from '@/utils/constants'
 
 // Load visit notes from localStorage
-const loadVisitNotes = (): VisitNote[] => {
+const loadVisitNotesFromStorage = (): VisitNote[] => {
   const stored = localStorage.getItem(STORAGE_KEYS.VISIT_NOTES)
   if (stored) {
     try {
@@ -27,7 +27,7 @@ const saveVisitNotes = (notes: VisitNote[]) => {
 
 export const useVisitNotesStore = defineStore('visitNotes', {
   state: () => ({
-    visitNotes: loadVisitNotes() as VisitNote[]
+    visitNotes: [] as VisitNote[]
   }),
 
   getters: {
@@ -45,6 +45,18 @@ export const useVisitNotesStore = defineStore('visitNotes', {
   },
 
   actions: {
+    // Set visit notes from API (merges with localStorage)
+    setVisitNotes(notes: VisitNote[]) {
+      const stored = loadVisitNotesFromStorage()
+      
+      // Merge mock notes with stored ones, avoiding duplicates
+      const existingIds = new Set(stored.map(note => note.id))
+      const newNotes = notes.filter(note => !existingIds.has(note.id))
+      
+      this.visitNotes = [...stored, ...newNotes]
+      saveVisitNotes(this.visitNotes)
+    },
+
     // Add new visit note
     addNote(note: VisitNote) {
       this.visitNotes.push(note)

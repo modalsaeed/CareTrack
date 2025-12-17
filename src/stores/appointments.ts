@@ -3,7 +3,7 @@ import type { Appointment, AppointmentStatus } from '@/types/appointment'
 import { STORAGE_KEYS } from '@/utils/constants'
 
 // Load appointments from localStorage
-const loadAppointments = (): Appointment[] => {
+const loadAppointmentsFromStorage = (): Appointment[] => {
   const stored = localStorage.getItem(STORAGE_KEYS.APPOINTMENTS)
   if (!stored) return []
   
@@ -22,7 +22,7 @@ const saveAppointments = (appointments: Appointment[]) => {
 
 export const useAppointmentsStore = defineStore('appointments', {
   state: () => ({
-    appointments: loadAppointments()
+    appointments: [] as Appointment[]
   }),
 
   getters: {
@@ -50,9 +50,15 @@ export const useAppointmentsStore = defineStore('appointments', {
   },
 
   actions: {
-    // Set appointments from API
+    // Set appointments from API (merges with localStorage)
     setAppointments(appointments: Appointment[]) {
-      this.appointments = appointments
+      const stored = loadAppointmentsFromStorage()
+      
+      // Merge mock appointments with stored ones, avoiding duplicates
+      const existingIds = new Set(stored.map(apt => apt.id))
+      const newAppointments = appointments.filter(apt => !existingIds.has(apt.id))
+      
+      this.appointments = [...stored, ...newAppointments]
       saveAppointments(this.appointments)
     },
 

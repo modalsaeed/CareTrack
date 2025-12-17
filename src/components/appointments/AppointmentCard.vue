@@ -3,7 +3,7 @@
     <div class="appointment-header">
       <div class="patient-info">
         <h3 class="patient-name">{{ appointment.patientName }}</h3>
-        <span class="appointment-time">{{ appointment.time }}</span>
+        <span class="appointment-time">{{ formatTime(appointment.time) }}</span>
       </div>
       <StatusBadge :status="appointment.status" />
     </div>
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import type { Appointment, AppointmentStatus } from '@/types/appointment'
+import { formatTime } from '@/utils/formatters'
 import BaseCard from '@/components/common/BaseCard.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
 

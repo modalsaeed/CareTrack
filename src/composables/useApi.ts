@@ -1,7 +1,8 @@
 import { ref } from 'vue'
 import { useAppointmentsStore } from '@/stores/appointments'
 import { usePatientsStore } from '@/stores/patients'
-import { mockAppointments, mockPatients } from '@/assets/data/mockData'
+import { useVisitNotesStore } from '@/stores/visitNotes'
+import { mockAppointments, mockPatients, mockVisitNotes } from '@/assets/data/mockData'
 
 /**
  * Composable for initializing app data after login.
@@ -28,9 +29,15 @@ export function useApi() {
       // Populate stores with mock data
       const appointmentsStore = useAppointmentsStore()
       const patientsStore = usePatientsStore()
+      const visitNotesStore = useVisitNotesStore()
       
+      // Always load mock appointments, will merge with localStorage
       appointmentsStore.setAppointments(mockAppointments)
+      
       patientsStore.setPatients(mockPatients)
+      
+      // Always load visit notes, will merge with localStorage
+      visitNotesStore.setVisitNotes(mockVisitNotes)
 
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load data'
