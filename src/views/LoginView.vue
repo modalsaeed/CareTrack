@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-card">
       <div class="logo">
-        <div class="logo-circle">CT</div>
+        <img :src="logo" alt="CareTrack logo" class="logo-icon" />
       </div>
       
       <h1 class="brand-name">CareTrack</h1>
@@ -10,35 +10,31 @@
       <p class="subtitle">Sign in to manage your clinic</p>
 
       <form @submit.prevent="handleLogin" class="login-form">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            v-model="email"
-            type="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
+        <BaseInput
+          id="email"
+          v-model="email"
+          label="Email"
+          type="email"
+          placeholder="Enter your email"
+          required
+        />
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            v-model="password"
-            type="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
+        <BaseInput
+          id="password"
+          v-model="password"
+          label="Password"
+          type="password"
+          placeholder="Enter your password"
+          required
+        />
 
         <div v-if="errorMessage" class="error-message">
           {{ errorMessage }}
         </div>
 
-        <button type="submit" class="submit-btn" :disabled="isLoading">
+        <BaseButton type="submit" variant="primary" :disabled="isLoading">
           {{ isLoading ? 'Signing in...' : 'Sign In' }}
-        </button>
+        </BaseButton>
 
         <p class="demo-note">Demo: Enter any email and password to continue</p>
       </form>
@@ -50,6 +46,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
+import BaseInput from '@/components/common/BaseInput.vue'
+import BaseButton from '@/components/common/BaseButton.vue'
+import logo from '@/assets/logo.svg'
 
 const router = useRouter()
 const { login } = useAuth()
@@ -86,130 +85,91 @@ const handleLogin = async () => {
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: var(--spacing-lg);
 }
 
 .login-card {
-  background: white;
-  border-radius: 12px;
-  padding: 48px 40px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
   width: 100%;
-  max-width: 440px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  max-width: 27.5rem;
+  box-shadow: var(--shadow-lg);
 }
 
 .logo {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .logo-circle {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #3b9fc5 0%, #2d8ab0 100%);
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-white);
 }
 
 .brand-name {
   text-align: center;
-  font-size: 24px;
-  font-weight: 700;
-  color: #2d3748;
-  margin: 0 0 8px 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
 }
 
 .welcome-title {
   text-align: center;
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a202c;
-  margin: 0 0 8px 0;
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-700);
+  margin: 0 0 var(--spacing-sm) 0;
 }
 
 .subtitle {
   text-align: center;
-  font-size: 14px;
-  color: #718096;
-  margin: 0 0 32px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-2xl) 0;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #4a5568;
-}
-
-.form-group input {
-  padding: 12px 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #3b9fc5;
-  box-shadow: 0 0 0 3px rgba(59, 159, 197, 0.1);
-}
-
-.form-group input::placeholder {
-  color: #a0aec0;
+  gap: var(--spacing-xl);
 }
 
 .error-message {
-  padding: 12px;
-  background-color: #fed7d7;
-  border: 1px solid #fc8181;
-  border-radius: 8px;
-  color: #c53030;
-  font-size: 14px;
+  padding: var(--spacing-md);
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-lg);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
   text-align: center;
-}
-
-.submit-btn {
-  padding: 14px;
-  background-color: #3b9fc5;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background-color: #2d8ab0;
-}
-
-.submit-btn:disabled {
-  background-color: #90cdf4;
-  cursor: not-allowed;
 }
 
 .demo-note {
   text-align: center;
-  font-size: 13px;
-  color: #e07c0e;
-  margin: 8px 0 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+  margin: var(--spacing-sm) 0 0 0;
+}
+
+/* Responsive */
+@media (max-width: 48rem) {
+  .login-card {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+  
+  .welcome-title {
+    font-size: var(--font-size-xl);
+  }
 }
 </style>

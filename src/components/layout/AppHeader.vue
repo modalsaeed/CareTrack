@@ -46,38 +46,37 @@ const handleLogout = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
-  padding: 0 32px;
-  background: #fff;
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  height: var(--header-height);
+  padding: 0 var(--spacing-2xl);
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-md);
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-lg);
   object-fit: cover;
-  background: none;
   display: block;
 }
 
 .brand-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-lg);
 }
 
 .user-menu {
@@ -86,26 +85,26 @@ const handleLogout = () => {
 }
 
 .user-avatar {
-  width: 40px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
   object-fit: cover;
   display: block;
-  transition: transform 0.2s;
+  transition: transform var(--transition-base);
 }
+
 .user-avatar:hover {
   transform: scale(1.05);
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 52px;
+  top: 3.25rem;
   right: 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 160px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  min-width: 10rem;
   z-index: 100;
   overflow: hidden;
 }
@@ -113,41 +112,27 @@ const handleLogout = () => {
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-sm);
   width: 100%;
-  padding: 12px 16px;
+  padding: var(--spacing-md) var(--spacing-lg);
   border: none;
   background: none;
   text-align: left;
-  font-size: 14px;
-  color: #2d3748;
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background var(--transition-base);
 }
 
 .dropdown-item:hover {
-  background: #f7fafc;
+  background: var(--color-bg-secondary);
 }
 
 .dropdown-item.logout {
-  color: #c53030;
+  color: var(--color-error);
 }
 
 .dropdown-item.logout:hover {
-  background: #fed7d7;
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
+  background: var(--color-error-bg);
 }
 </style>

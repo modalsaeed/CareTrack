@@ -18,57 +18,37 @@
 
 <style scoped>
 .app-sidebar {
-  width: 240px;
-  background: #fff;
-  border-right: 1px solid #e2e8f0;
+  width: var(--sidebar-width);
+  background: var(--color-bg-primary);
+  border-right: 1px solid var(--color-border);
   padding: 0;
 }
 
 .nav-menu {
-  padding: 24px 12px;
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  color: #4a5568;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--color-text-secondary);
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 4px;
-  transition: all 0.2s;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-base);
 }
 
 .nav-item:hover {
-  background: #f7fafc;
-  color: #2d3748;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
 }
 
 .nav-item.active {
-  background: #3b9fc5;
-  color: #fff;
-}
-
-.nav-icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2;
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
+  background: var(--color-primary);
+  color: var(--color-text-white);
 }
 </style>

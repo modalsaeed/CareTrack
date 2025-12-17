@@ -23,12 +23,12 @@ defineEmits<{
 
 <style scoped>
 .base-button {
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 0.625rem var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-base);
   border: none;
   font-family: inherit;
 }
@@ -39,20 +39,20 @@ defineEmits<{
 }
 
 .primary {
-  background: #3b9fc5;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-text-white);
 }
 
 .primary:hover:not(:disabled) {
-  background: #2d8ab0;
+  background: var(--color-primary-dark);
 }
 
 .secondary {
-  background: #e2e8f0;
-  color: #2d3748;
+  background: var(--color-gray-200);
+  color: var(--color-text-primary);
 }
 
 .secondary:hover:not(:disabled) {
-  background: #cbd5e0;
+  background: var(--color-gray-300);
 }
 </style>

@@ -25,24 +25,24 @@ const displayText = computed(() => {
 <style scoped>
 .status-badge {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 500;
+  padding: 0.25rem var(--spacing-md);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .scheduled {
-  background: #e6f4ff;
-  color: #1890ff;
+  background: var(--color-info-bg);
+  color: var(--color-info);
 }
 
 .checked-in {
-  background: #fff4e6;
-  color: #fa8c16;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .completed {
-  background: #e6f7e6;
-  color: #52c41a;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 </style>

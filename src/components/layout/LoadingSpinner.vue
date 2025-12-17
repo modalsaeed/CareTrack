@@ -11,15 +11,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 2.5rem;
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #e2e8f0;
-  border-top-color: #3b9fc5;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.25rem solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: var(--radius-full);
   animation: spin 0.8s linear infinite;
 }
 

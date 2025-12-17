@@ -51,45 +51,45 @@ defineEmits<{
 .base-input {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-sm);
 }
 
 .input-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #2d3748;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
 }
 
 .required {
-  color: #c53030;
+  color: var(--color-error);
 }
 
 .input-field {
-  padding: 10px 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 0.625rem var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
   font-family: inherit;
-  transition: border-color 0.2s;
+  transition: border-color var(--transition-base);
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #3b9fc5;
+  border-color: var(--color-primary);
 }
 
 .input-field:disabled {
-  background: #f7fafc;
+  background: var(--color-bg-secondary);
   cursor: not-allowed;
 }
 
 .textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 5rem;
 }
 
 .input-error {
-  font-size: 13px;
-  color: #c53030;
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
 }
 </style>

@@ -32,7 +32,7 @@ const isLoginPage = computed(() => route.path === '/login')
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #f7fafc;
+  background: var(--color-bg-secondary);
 }
 
 .app-body {
@@ -42,7 +42,7 @@ const isLoginPage = computed(() => route.path === '/login')
 
 .main-content {
   flex: 1;
-  padding: 32px;
-  background: #f7fafc;
+  padding: var(--spacing-2xl);
+  background: var(--color-bg-secondary);
 }
 </style>
