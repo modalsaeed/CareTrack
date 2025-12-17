@@ -5,6 +5,7 @@ import { useAppointmentsStore } from '@/stores/appointments'
 import AppointmentList from '@/components/appointments/AppointmentList.vue'
 import BaseCard from '@/components/common/BaseCard.vue'
 import BaseButton from '@/components/common/BaseButton.vue'
+import { isTodayDate } from '@/utils/formatters'
 
 const router = useRouter()
 const appointmentsStore = useAppointmentsStore()
@@ -39,14 +40,7 @@ const formattedDate = computed(() => {
 })
 
 // Check if selected date is today
-const isToday = computed(() => {
-  const today = new Date()
-  return (
-    selectedDate.value.getDate() === today.getDate() &&
-    selectedDate.value.getMonth() === today.getMonth() &&
-    selectedDate.value.getFullYear() === today.getFullYear()
-  )
-})
+const isToday = computed(() => isTodayDate(selectedDate.value))
 
 // Date navigation
 const goToPreviousDay = () => {
