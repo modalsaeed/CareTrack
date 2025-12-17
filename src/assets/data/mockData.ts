@@ -36,6 +36,7 @@ export const mockPatients: Patient[] = [
 ]
 
 export const mockAppointments: Appointment[] = [
+  // Today's appointments
   {
     id: '1',
     patientId: '1',
@@ -61,6 +62,93 @@ export const mockAppointments: Appointment[] = [
     date: new Date(new Date().setHours(0, 0, 0, 0)),
     time: '02:00 PM',
     reason: 'Lab results review',
+    status: 'scheduled'
+  },
+  // Yesterday's appointments
+  {
+    id: '4',
+    patientId: '1',
+    patientName: 'John Smith',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() - 1)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '11:00 AM',
+    reason: 'Blood pressure check',
+    status: 'completed'
+  },
+  {
+    id: '5',
+    patientId: '2',
+    patientName: 'Jane Doe',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() - 1)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '03:30 PM',
+    reason: 'Prescription refill',
+    status: 'completed'
+  },
+  // Tomorrow's appointments
+  {
+    id: '6',
+    patientId: '3',
+    patientName: 'Bob Johnson',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() + 1)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '09:30 AM',
+    reason: 'Physical examination',
+    status: 'scheduled'
+  },
+  {
+    id: '7',
+    patientId: '1',
+    patientName: 'John Smith',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() + 1)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '01:00 PM',
+    reason: 'Consultation',
+    status: 'scheduled'
+  },
+  // Next week appointments
+  {
+    id: '8',
+    patientId: '2',
+    patientName: 'Jane Doe',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() + 7)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '10:00 AM',
+    reason: 'Follow-up checkup',
+    status: 'scheduled'
+  },
+  {
+    id: '9',
+    patientId: '3',
+    patientName: 'Bob Johnson',
+    date: (() => {
+      const d = new Date()
+      d.setDate(d.getDate() + 7)
+      d.setHours(0, 0, 0, 0)
+      return d
+    })(),
+    time: '02:30 PM',
+    reason: 'Lab work',
     status: 'scheduled'
   }
 ]

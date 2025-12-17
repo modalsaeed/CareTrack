@@ -7,15 +7,15 @@ export const useAppointmentsStore = defineStore('appointments', {
   }),
 
   getters: {
-    // Get today's appointments
-    todaysAppointments: (state) => {
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
+    // Get appointments for a specific date
+    getByDate: (state) => (date: Date) => {
+      const targetDate = new Date(date)
+      targetDate.setHours(0, 0, 0, 0)
       
       return state.appointments.filter(apt => {
         const aptDate = new Date(apt.date)
         aptDate.setHours(0, 0, 0, 0)
-        return aptDate.getTime() === today.getTime()
+        return aptDate.getTime() === targetDate.getTime()
       })
     },
 

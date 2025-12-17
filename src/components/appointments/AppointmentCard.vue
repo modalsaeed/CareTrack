@@ -31,7 +31,7 @@ import type { Appointment, AppointmentStatus } from '@/types/appointment'
 import BaseCard from '@/components/common/BaseCard.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
 
-defineProps<{
+const props = defineProps<{
   appointment: Appointment
 }>()
 
@@ -44,10 +44,6 @@ const handleStatusChange = (event: Event) => {
   const newStatus = target.value as AppointmentStatus
   emit('update-status', props.appointment.id, newStatus)
 }
-
-const props = defineProps<{
-  appointment: Appointment
-}>()
 </script>
 
 <style scoped>
