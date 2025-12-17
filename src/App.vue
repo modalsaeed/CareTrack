@@ -1,13 +1,30 @@
 <template>
+  <!-- Login page (no layout) -->
   <div v-if="isLoginPage" class="login-layout">
     <router-view />
   </div>
+
+  <!-- App layout (header + sidebar + main content) -->
   <div v-else class="app-layout">
     <AppHeader />
     <div class="app-body">
       <AppSidebar />
       <main class="main-content">
-        <router-view />
+        <!-- Show loading screen while fetching data -->
+        <div v-if="appLoading" class="content-loading">
+          <LoadingSpinner />
+          <p>Loading appointments...</p>
+        </div>
+
+        <!-- Show error with retry button if initialization fails -->
+        <div v-else-if="appError" class="content-error">
+          <h2>Failed to Load Data</h2>
+          <p>{{ appError }}</p>
+          <BaseButton @click="retryInit" variant="primary">Retry</BaseButton>
+        </div>
+
+        <!-- Normal content once loaded -->
+        <router-view v-else />
       </main>
     </div>
   </div>
@@ -18,16 +35,28 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
+import LoadingSpinner from '@/components/layout/LoadingSpinner.vue'
+import BaseButton from '@/components/common/BaseButton.vue'
+import { useApi } from '@/composables/useApi'
 
 const route = useRoute()
 const isLoginPage = computed(() => route.path === '/login')
+
+// API loading/error states
+const { loading: appLoading, error: appError, fetchAppData } = useApi()
+
+const retryInit = () => {
+  fetchAppData()
+}
 </script>
 
 <style scoped>
+/* Login layout */
 .login-layout {
   min-height: 100vh;
 }
 
+/* App layout */
 .app-layout {
   display: flex;
   flex-direction: column;
@@ -44,5 +73,33 @@ const isLoginPage = computed(() => route.path === '/login')
   flex: 1;
   padding: var(--spacing-2xl);
   background: var(--color-bg-secondary);
+}
+
+/* Loading/Error states in main content */
+.content-loading,
+.content-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: var(--spacing-lg);
+}
+
+.content-loading p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.content-error {
+  text-align: center;
+}
+
+.content-error h2 {
+  color: var(--color-error);
+}
+
+.content-error p {
+  color: var(--color-text-secondary);
 }
 </style>
