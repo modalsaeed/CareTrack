@@ -13,7 +13,7 @@
         <!-- Show loading screen while fetching data -->
         <div v-if="appLoading" class="content-loading">
           <LoadingSpinner />
-          <p>Loading appointments...</p>
+          <p>{{ loadingMessage }}</p>
         </div>
 
         <!-- Show error with retry button if initialization fails -->
@@ -46,6 +46,14 @@ const isLoginPage = computed(() => route.path === '/login')
 // API loading/error states
 const { loading: appLoading, error: appError, fetchAppData } = useApi()
 const { isLoggedIn } = useAuth()
+
+// Dynamic loading message based on current route
+const loadingMessage = computed(() => {
+  if (route.path.startsWith('/patients')) {
+    return 'Loading patients...'
+  }
+  return 'Loading appointments...'
+})
 
 // Fetch data when user logs in
 watch(isLoggedIn, (newValue) => {
