@@ -71,3 +71,43 @@
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
 }
+
+/* Dark Mode Theme */
+.dark {
+  /* Colors - Primary (slightly brighter for dark bg) */
+  --color-primary: #4db8e8;
+  --color-primary-dark: #3b9fc5;
+
+  /* Colors - Neutral Grays (inverted) */
+  --color-gray-50: #1a202c;
+  --color-gray-200: #2d3748;
+  --color-gray-300: #4a5568;
+  --color-gray-600: #cbd5e0;
+  --color-gray-700: #e2e8f0;
+
+  /* Colors - Semantic (adjusted for dark bg) */
+  --color-success: #68d391;
+  --color-success-bg: #1a3d2b;
+  --color-warning: #ffa940;
+  --color-warning-bg: #3d2e1a;
+  --color-info: #4da6ff;
+  --color-info-bg: #1a2f4d;
+  --color-error: #fc8181;
+  --color-error-bg: #4d1a1a;
+
+  /* Colors - Background (dark grays) */
+  --color-bg-primary: #1a202c;
+  --color-bg-secondary: #2d3748;
+
+  /* Colors - Text (light colors) */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #a0aec0;
+  --color-text-white: #ffffff;
+
+  /* Colors - Border (subtle gray) */
+  --color-border: #4a5568;
+
+  /* Shadows (darker for dark mode) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

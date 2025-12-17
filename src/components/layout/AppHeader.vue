@@ -5,6 +5,9 @@
       <span class="brand-name">CareTrack</span>
     </div>
     <div class="header-actions">
+      <!-- Theme Toggle -->
+      <ThemeToggle />
+      
       <div class="user-menu" @click="toggleDropdown">
         <img :src="avatar" alt="User avatar" class="user-avatar" />
         <div v-if="showDropdown" class="dropdown-menu">
@@ -19,16 +22,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref} from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
+import ThemeToggle from '@/components/common/ThemeToggle.vue'
 import logo from '@/assets/logo.svg'
 import avatar from '@/assets/avatar.jpg'
 
 const router = useRouter()
-const { logout} = useAuth()
+const { logout } = useAuth()
 const showDropdown = ref(false)
-
 
 const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value

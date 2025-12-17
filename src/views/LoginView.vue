@@ -1,5 +1,10 @@
 <template>
   <div class="login-container">
+    <!-- Theme Toggle in top-right corner -->
+    <div class="theme-toggle-wrapper">
+      <ThemeToggle />
+    </div>
+
     <div class="login-card">
       <div class="logo">
         <img :src="logo" alt="CareTrack logo" class="logo-icon" />
@@ -48,6 +53,7 @@ import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 import BaseInput from '@/components/common/BaseInput.vue'
 import BaseButton from '@/components/common/BaseButton.vue'
+import ThemeToggle from '@/components/common/ThemeToggle.vue'
 import logo from '@/assets/logo.svg'
 
 const router = useRouter()
@@ -80,12 +86,20 @@ const handleLogin = async () => {
 
 <style scoped>
 .login-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-bg-secondary);
   padding: var(--spacing-lg);
+}
+
+.theme-toggle-wrapper {
+  position: absolute;
+  top: var(--spacing-xl);
+  right: var(--spacing-xl);
+  z-index: 10;
 }
 
 .login-card {
