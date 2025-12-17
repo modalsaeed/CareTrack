@@ -1,8 +1,13 @@
 <template>
   <header class="app-header">
-    <div class="logo-area">
-      <img :src="logo" alt="CareTrack logo" class="logo-icon" />
-      <span class="brand-name">CareTrack</span>
+    <div class="header-left">
+      <button class="menu-toggle" @click="$emit('toggle-sidebar')" aria-label="Toggle menu">
+        <span class="material-icons">menu</span>
+      </button>
+      <div class="logo-area">
+        <img :src="logo" alt="CareTrack logo" class="logo-icon" />
+        <span class="brand-name">CareTrack</span>
+      </div>
     </div>
     <div class="header-actions">
       <!-- Theme Toggle -->
@@ -28,6 +33,10 @@ import { useAuth } from '@/composables/useAuth'
 import ThemeToggle from '@/components/common/ThemeToggle.vue'
 import logo from '@/assets/logo.svg'
 import avatar from '@/assets/avatar.jpg'
+
+defineEmits<{
+  'toggle-sidebar': []
+}>()
 
 const router = useRouter()
 const { logout } = useAuth()
@@ -56,10 +65,52 @@ const handleLogout = () => {
   box-shadow: var(--shadow-sm);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+}
+
+.menu-toggle:hover {
+  background: var(--color-bg-secondary);
+}
+
+.menu-toggle .material-icons {
+  font-size: 1.5rem;
+}
+
 .logo-area {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .brand-name {
+    display: none;
+  }
 }
 
 .logo-icon {

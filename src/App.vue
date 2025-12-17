@@ -11,9 +11,9 @@
 
   <!-- App layout (header + sidebar + main content) -->
   <div v-else class="app-layout">
-    <AppHeader />
+    <AppHeader @toggle-sidebar="toggleSidebar" />
     <div class="app-body">
-      <AppSidebar />
+      <AppSidebar :is-open="isSidebarOpen" @close="closeSidebar" />
       <main class="main-content">
         <!-- Show loading screen while fetching data -->
         <div v-if="appLoading" class="content-loading">
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted } from 'vue'
+import { computed, watch, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
@@ -48,6 +48,20 @@ import { useAuth } from '@/composables/useAuth'
 const route = useRoute()
 const isLoginPage = computed(() => route.path === '/login')
 const isNotFoundPage = computed(() => route.name === 'not-found')
+const isSidebarOpen = ref(false)
+
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value
+}
+
+const closeSidebar = () => {
+  isSidebarOpen.value = false
+}
+
+// Close sidebar when route changes (mobile navigation)
+watch(route, () => {
+  closeSidebar()
+})
 
 // API loading/error states
 const { loading: appLoading, error: appError, fetchAppData } = useApi()
@@ -108,6 +122,12 @@ const retryInit = () => {
   flex: 1;
   padding: var(--spacing-2xl);
   background: var(--color-bg-secondary);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--spacing-lg);
+  }
 }
 
 /* Loading/Error states in main content */
