@@ -1,9 +1,28 @@
 import { defineStore } from 'pinia'
 import type { Appointment, AppointmentStatus } from '@/types/appointment'
+import { STORAGE_KEYS } from '@/utils/constants'
+
+// Load appointments from localStorage
+const loadAppointments = (): Appointment[] => {
+  const stored = localStorage.getItem(STORAGE_KEYS.APPOINTMENTS)
+  if (!stored) return []
+  
+  const appointments = JSON.parse(stored)
+  // Convert date strings back to Date objects
+  return appointments.map((apt: any) => ({
+    ...apt,
+    date: new Date(apt.date)
+  }))
+}
+
+// Save appointments to localStorage
+const saveAppointments = (appointments: Appointment[]) => {
+  localStorage.setItem(STORAGE_KEYS.APPOINTMENTS, JSON.stringify(appointments))
+}
 
 export const useAppointmentsStore = defineStore('appointments', {
   state: () => ({
-    appointments: [] as Appointment[]
+    appointments: loadAppointments()
   }),
 
   getters: {
@@ -34,6 +53,7 @@ export const useAppointmentsStore = defineStore('appointments', {
     // Set appointments from API
     setAppointments(appointments: Appointment[]) {
       this.appointments = appointments
+      saveAppointments(this.appointments)
     },
 
     // Update appointment status
@@ -41,12 +61,14 @@ export const useAppointmentsStore = defineStore('appointments', {
       const appointment = this.appointments.find(apt => apt.id === appointmentId)
       if (appointment) {
         appointment.status = newStatus
+        saveAppointments(this.appointments)
       }
     },
 
     // Add new appointment
     addAppointment(appointment: Appointment) {
       this.appointments.push(appointment)
+      saveAppointments(this.appointments)
     }
   }
 })
